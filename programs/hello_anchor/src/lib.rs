@@ -1,5 +1,9 @@
 use anchor_lang::prelude::*;
 
+pub mod instructions;
+
+pub use instructions::*;
+
 declare_id!("GgYy3QMGzhfgcgFEP2LRXTadPyrzj4YdqeCB8Zj2RrpW");
 
 #[program]
@@ -7,10 +11,6 @@ pub mod hello_anchor {
     use super::*;
 
     pub fn initialize(ctx: Context<Initialize>) -> Result<()> {
-        msg!("Greetings from: {:?}", ctx.program_id);
-        Ok(())
+        initialize::handler(ctx)
     }
 }
-
-#[derive(Accounts)]
-pub struct Initialize {}
